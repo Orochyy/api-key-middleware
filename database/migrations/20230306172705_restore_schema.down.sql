@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS `auth`;
+DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `user_profile`;
+DROP TABLE IF EXISTS `user_data`;

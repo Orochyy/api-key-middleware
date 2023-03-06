@@ -8,7 +8,12 @@ RUN go mod download
 RUN go build -v -o api cmd/api/main.go
 
 #RUN migrate -source file://database/migrations -database "mysql://root1:root1@tcp(go_api_database:3306)/go_api_database" up 2
+
+
+
 #RUN docker run -v database:/migrations --network host migrate/migrate -path=database/migrations/ -database "mysql://root1:root1@tcp(go_api_database:3306)/go_api_database" up 2
+
+RUN go install -tags 'mysql' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 
 FROM builder as prod
 

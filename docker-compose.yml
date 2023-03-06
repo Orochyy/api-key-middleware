@@ -31,6 +31,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       target: prod
+    env_file: .env
     ports:
       - ${PUBLIC_PORT}:${LISTEN_PORT}
     expose:
