@@ -18,6 +18,4 @@ docker compose build
 PUBLIC_PORT=3000 docker compose up
 ```
 
-### 4. Migration
-```mysql 
-```
+
