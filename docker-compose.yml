@@ -1,0 +1,41 @@
+version: '3.7'
+
+volumes:
+  api_db_data:
+
+services:
+  # MySQL db
+  go_api_database:
+    image: mysql
+    container_name: go_key_database
+    ports:
+      - 3306:3306
+    env_file: .env
+    volumes:
+      - api_db_data:/var/run/mysql/
+
+  # memcached
+  go_api_memcached:
+    image: bitnami/memcached:latest
+    container_name: go_api_memcached
+    environment:
+      MEMCACHED_CACHE_SIZE: 128
+    ports:
+      - 11213:11211
+
+  # api
+  go_key_api:
+    image: go_api_key_bin
+    container_name: go_api_key
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: prod
+    ports:
+      - ${PUBLIC_PORT}:${LISTEN_PORT}
+    expose:
+      - ${PUBLIC_PORT}
+    pid: "host"
+    depends_on:
+      - go_api_database
+      - go_api_memcached

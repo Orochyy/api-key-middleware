@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+
+  # api
+  go_key_api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: dev
+    command: air
+    volumes:
+      - .:/go/src/app
