@@ -74,21 +74,3 @@ func NewCacheConnection() *cache.Cache {
 	cacheHost := fmt.Sprintf("%s:%s", os.Getenv("CACHE_HOST"), os.Getenv("CACHE_PORT"))
 	return cache.NewCache(cacheHost)
 }
-
-//func authMiddleware(authService ports.AuthService, next http.Handler) http.Handler {
-//	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-//		apiKey := r.Header.Get("api-key")
-//		if apiKey == "" {
-//			http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
-//			return
-//		}
-//
-//		qq := authService.FindApiKey(apiKey)
-//		if qq == false {
-//			http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
-//			return
-//		}
-//
-//		next.ServeHTTP(w, r)
-//	})
-//}
